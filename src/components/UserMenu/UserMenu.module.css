@@ -1,0 +1,8 @@
+.button{
+    color: blue;
+    width: 75px;
+    border-color: transparent;
+    border-radius: 6px;
+    padding: 7px;
+    margin-bottom: 5px;
+}

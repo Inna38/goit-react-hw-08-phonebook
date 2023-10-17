@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 import { loginUserThunk } from './loginUser.thunk';
 
@@ -27,4 +29,10 @@ const loginUserSlice = createSlice({
   },
 });
 
-export const loginUserReduser = loginUserSlice.reducer;
+const persistConfig = {
+  key: "login",
+  storage,
+}
+
+export const loginUserReduser = persistReducer(persistConfig, loginUserSlice.reducer)
+

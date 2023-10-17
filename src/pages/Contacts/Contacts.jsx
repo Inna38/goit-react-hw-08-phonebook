@@ -10,7 +10,6 @@ import { fetchContacts } from 'redux/contacts.thunk';
 const Contacts = () => {
   const isLoading = useSelector(state => state.contacts.isLoading);
   const error = useSelector(state => state.contacts.error);
-
   const dispatch = useDispatch();
 
   useEffect(() => {

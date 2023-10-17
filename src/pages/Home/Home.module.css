@@ -1,0 +1,8 @@
+.title {
+  display: flex;
+  justify-content: center;
+  font-size: 48px;
+  font-style: oblique;
+  color: #2f3941;
+  text-shadow: 2px 2px #90c6f1;
+}

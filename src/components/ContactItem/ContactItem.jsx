@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import css from './ContactItem.module.css';
 
-export const ContactItem = ({ id, name, phone }) => {
+export const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   const deleteContactApi = id => {
@@ -13,7 +13,7 @@ export const ContactItem = ({ id, name, phone }) => {
   return (
     <li className={css.item}>
       <p className={css.name}>
-        {name}: {phone}
+        {name}: {number}
       </p>
       <button
         className={css.btn}

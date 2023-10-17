@@ -10,8 +10,9 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
 import { useState } from 'react';
+import { publicApi } from 'http/http';
+import Notiflix from 'notiflix';
 
 
 function Copyright(props) {
@@ -53,13 +54,12 @@ export default function Register() {
     const form = event.currentTarget;
 
     try {
-      await axios.post(
-        'https://connections-api.herokuapp.com/users/signup', user
+      await publicApi.post(
+        '/users/signup', user
         );
-        
+      Notiflix.Notify.success('Success');
       } catch (e) {
-        console.log(e);
-       
+        Notiflix.Notify.failure('Error');     
     }
 
     form.reset();

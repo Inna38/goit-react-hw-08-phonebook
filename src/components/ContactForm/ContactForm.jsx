@@ -13,7 +13,7 @@ export function ContactForm() {
     e.preventDefault();
 
     const name = e.currentTarget.elements.name.value;
-    const phone = e.currentTarget.elements.number.value;
+    const number = e.currentTarget.elements.number.value;
 
     const userContacts = contacts.find(contact => contact.name === name);
 
@@ -22,7 +22,7 @@ export function ContactForm() {
       return;
     }
 
-    dispatch(addContact({ name, phone, id: nanoid() }));
+    dispatch(addContact({ name, number, id: nanoid() }));
 
     const form = e.currentTarget;
     form.reset();

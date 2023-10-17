@@ -15,6 +15,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { loginUserThunk } from 'redux/loginUser.thunk/loginUser.thunk';
 import { useDispatch } from 'react-redux';
 
+import Notiflix from 'notiflix';
+import { useNavigate } from 'react-router-dom';
+
 function Copyright(props) {
   return (
     <Typography
@@ -37,8 +40,9 @@ const defaultTheme = createTheme();
 
 export default function Login() {
   const dispatch = useDispatch();
+ const navigate = useNavigate()
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const form = event.currentTarget;
@@ -47,8 +51,14 @@ export default function Login() {
       email: data.get('email'),
       password: data.get('password'),
     };
-    
-    dispatch(loginUserThunk(user));
+
+    try {
+      await dispatch(loginUserThunk(user)).unwrap();
+      Notiflix.Notify.success('Success');
+      navigate("/", {replace: true})
+    } catch (error) {
+      Notiflix.Notify.failure('Error');
+    }
 
     form.reset();
   };
