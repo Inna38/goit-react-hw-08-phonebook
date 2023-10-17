@@ -40,7 +40,7 @@ const defaultTheme = createTheme();
 
 export default function Login() {
   const dispatch = useDispatch();
- const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -55,7 +55,7 @@ export default function Login() {
     try {
       await dispatch(loginUserThunk(user)).unwrap();
       Notiflix.Notify.success('Success');
-      navigate("/", {replace: true})
+      navigate('/', { replace: true });
     } catch (error) {
       Notiflix.Notify.failure('Error');
     }

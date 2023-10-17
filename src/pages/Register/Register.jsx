@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { publicApi } from 'http/http';
 import Notiflix from 'notiflix';
-
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -35,31 +35,30 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-
 export default function Register() {
-    const [user, setUser] = useState({
-      name: '',
-      email: '',
-      password: '',
-    })
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
 
-    const handleChange = (e) => {
-        const { name } = e.target
-        const { value } = e.target
-        setUser(prev => ({...prev, [name]: value}));
-}
+  const handleChange = e => {
+    const { name } = e.target;
+    const { value } = e.target;
+    setUser(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async event => {
     event.preventDefault();
     const form = event.currentTarget;
 
     try {
-      await publicApi.post(
-        '/users/signup', user
-        );
+      await publicApi.post('/users/signup', user);
+      navigate('/', { replace: true });
       Notiflix.Notify.success('Success');
-      } catch (e) {
-        Notiflix.Notify.failure('Error');     
+    } catch (e) {
+      Notiflix.Notify.failure('Error');
     }
 
     form.reset();
@@ -157,4 +156,3 @@ export default function Register() {
     </ThemeProvider>
   );
 }
-
