@@ -55,7 +55,7 @@ export default function Login() {
     try {
       await dispatch(loginUserThunk(user)).unwrap();
       Notiflix.Notify.success('Success');
-      navigate('/', { replace: true });
+      navigate('/contacts', { replace: true });
     } catch (error) {
       Notiflix.Notify.failure('Error');
     }

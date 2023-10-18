@@ -55,7 +55,7 @@ export default function Register() {
 
     try {
       await publicApi.post('/users/signup', user);
-      navigate('/', { replace: true });
+      navigate('/login', { replace: true });
       Notiflix.Notify.success('Success');
     } catch (e) {
       Notiflix.Notify.failure('Error');
